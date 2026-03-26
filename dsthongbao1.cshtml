@@ -1,0 +1,719 @@
+﻿@model IEnumerable<WebApplication3.hinhanh>
+
+@{
+    //Layout = null;
+
+
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+
+    }
+
+@{ bangthongbaoEntities db = new bangthongbaoEntities();
+    //var pdf = db.hinhanhs.Where(x => x.kieufile != null).ToList();
+    //var jpg = db.hinhanhs.Where(x => x.kieufile == null).ToList();
+   
+}
+
+
+
+<!DOCTYPE html>
+<style>
+    /*  .modal-dialog {
+        max-width: 850px;
+        margin: 2rem auto;
+    }*/
+
+    /*.modal-content {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        margin-top: 50%;
+        margin:auto;
+    }*/
+    .bs-example, .new-caption-area {
+        width: 600px;
+        margin: auto;
+        color: #ff0000;
+    }
+    .bs-example {
+        width: 640px;
+        margin: auto;
+        color: #ff0000;
+    }
+    .new-caption-area {
+        width: 500px;
+       /* margin: auto;
+        color: #ff0000;*/
+    }
+
+    body .modal-xl  {
+        width: 1000px;
+       
+    }
+    /*.modal-content{
+        display: inline;
+    }*/
+    
+  
+</style>
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    @*<meta http-equiv="refresh" content="10"  />*@
+
+
+</head>
+                                         @**********************************modoal hieenj noi dung thong bai pdf*************************************************@
+<div class="modal" id="myModal">
+    <div class="modal-dialog " style="margin: 0px 501px;">
+        <div class="modal-content" style="width: 950px; height: 100%; align-content:center ">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                <h2 class="modal-title" id="tieude" style="text-align:center; color:red">Modal Heading</h2>
+            </div>
+
+            <!-- Modal body -->
+            <div id="aabb" class="modal-body" style="height:870px; width :850px; margin:0 auto ">
+
+
+
+
+
+            </div>
+
+            @*<embed src="~/uphinh/@item.tenhinhanh + 'a'" type="application/pdf" height="445" width="290" data-toggle="modal">*@
+
+        </div>
+
+        <!-- Modal footer -->
+        @*<div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng</button>
+            </div>*@
+
+    </div>
+</div>
+
+
+
+
+<body onload="startTime()">
+
+    @*, timedRefresh(10)*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!--<div class="container-fluid p-5 bg-primary text-white text-center  " controls id="myvideo" onload="startTime()" style="width:100%; height :300px;background-image: url('../hinhanh/br1.jpg') ;background-repeat: no-repeat; background-size:cover ">-->
+    @*/**************************************************************************************************************************************************************@
+    @*style=" ;  background-size: cover ;height:203px;width:inherit"*@
+
+
+
+
+
+
+    <!--<h1 style="color:crimson">
+            CÔNG TY TNHH MTV XSKT VÀ DVTH ĐỒNG NAI
+
+        </h1>
+        <h1 style="color:crimson">
+
+            BẢNG THÔNG TIN NỘI BỘ
+<br /> 
+        </h1>
+        <h3 style="text-align:center"> <span id="txt" style="color:crimson">sdfsdf</span></h3>
+
+    </div>-->
+    @*<meta http-equiv="refresh" content="10"; url = '<%= Url.Action("home", "dsthongbao1") %>'>*@
+    @*<meta http-equiv="refresh" content="10">*@
+
+    <div class="row" style="width:inherit ;margin-left:0px;margin-right:0px;">
+        <div class="column col-4" style="text-align: center; border-style:solid; border-color: red green rgb(140,51,79) #FFA500;  height:471px">
+            <h2>@Html.ActionLink("THÔNG TIN NỘi BỘ", "dsthongbaonoibo")</h2>
+
+            @*<h1><a href="/Home/dsthongbao3.cshtml">THÔNG TIN NỘi BỘ</a></h1>*@
+            <marquee direction="up" height="320px" scrrollamount="-10" onMouseOver="this.stop()" onMouseOut="this.start()" class="col-12">
+
+                @{ foreach (var item in Model.Where(x => x.kieufile != null).ToList())
+                    {
+
+
+                        <div style="text-align:center">
+                            <br /><br /><br />
+                            @*//giu lai*@
+                            @* <div style="text-align:center"><a style="text-align:center " id="abc" data-okx="@item.tenhinhanh" href="" onclick="window.open('@item.tenhinhanh','_blank', 'fullscreen=yes'); return false;">@item.tenthongbao</a></div>*@
+
+
+
+
+
+                            <div style="text-align:center ;font-size:18px"><a style="text-align:center " data-toggle="modal" id="nutbam" onclick="showDetails(this)" data-target="#myModal" data-okx="@item.tenhinhanh" href="" data-ok="@item.tenhinhanh" data-ok1="@item.tenthongbao">@item.tenthongbao</a></div>
+
+
+
+
+
+
+
+                            @{
+                                if (item.kieufile != null && item.id != 90813)
+
+                                {
+
+                                    <embed src="~/uphinh/@item.tenhinhanh" type="application/pdf" height="245" width="190" data-toggle="modal">
+
+
+
+
+                                }
+
+
+
+                            }
+
+
+
+
+
+
+                            @{
+                                if (item.id == 90813)
+
+                                {
+
+                                    @*<embed src="~/uphinh/@item.tenhinhanh" type="application/pdf" height="245" width="190" data-toggle="modal">*@
+
+
+                                    <img src="~/uphinh/@item.tenhinhanh" style="width:190px" height="190">
+
+                                }
+
+
+
+                            }
+
+
+
+
+                        </div>
+
+                    }
+
+
+                }
+
+            </marquee>
+
+
+
+
+        </div>
+
+        <div class="column col-8" style="text-align: center; border-style: solid; border-color: red green rgb(140,51,79) #FFA500;">
+            <h1>@Html.ActionLink("HÌNH ẢNH HOẠT ĐỘNG CÔNG TY", "dshinhanhhoatdong")</h1>
+
+
+
+           <br /> <br /> 
+
+
+         
+
+
+
+
+                <div class="bs-example" style="width:730px">
+                    <div id="carousel-example-captions" class="carousel slide" data-ride="carousel">
+
+                        <div class="carousel-inner" style="width:90%; height:90%">
+                            <div class="item active">
+                                <img data-src="holder.js/900x500/auto/#777:#777" alt="900x500" src="~/uphinh/slideshow-1.jpg">
+                                <div class="carousel-caption">
+                                    @*<h3>First slide label</h3>
+                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
+                                </div>
+                            </div>
+
+
+
+                            @{ foreach (var item in Model)
+                                {
+                                    if (item.kieufile == null && item.id != 90813)
+                                    {
+                                        <div class="item">
+                                            @*<img src="~/uphinh/@item.tenhinhanh" alt="New York" width="1200" height="700" style="padding-left:122px; padding-right:122px;  ">*@
+
+                                            <img src="~/uphinh/@item.tenhinhanh" alt="900x500" @*width="1200" height="700"*@ style="padding-left:122px; padding-right:122px;  ">
+
+
+                                            <div class="carousel-caption">
+
+                                                <p style="margin: 0px 0 -53px; text-align: center; font-family: 'Times New Roman'; font-size: 19px"><b>@item.tenthongbao</b></p>
+                                            </div>
+
+                                        </div>
+
+
+                                    }
+
+
+
+
+                                }
+
+
+                            }
+
+
+
+
+
+
+
+
+                            @*<div class="item">
+                                    <img data-src="holder.js/900x500/auto/#666:#666" alt="900x500" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzY2NiIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNjY2O2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1zaXplOjU2cHg7Zm9udC1mYW1pbHk6QXJpYWwsSGVsdmV0aWNhLHNhbnMtc2VyaWY7ZG9taW5hbnQtYmFzZWxpbmU6Y2VudHJhbCI+OTAweDUwMDwvdGV4dD48L3N2Zz4=">
+                                    <div class="carousel-caption">
+                                        <h3>Second slide label</h3>
+                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <img data-src="holder.js/900x500/auto/#555:#5555" alt="900x500" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI5MDAiIGhlaWdodD0iNTAwIj48cmVjdCB3aWR0aD0iOTAwIiBoZWlnaHQ9IjUwMCIgZmlsbD0iIzU1NSIvPjx0ZXh0IHRleHQtYW5jaG9yPSJtaWRkbGUiIHg9IjQ1MCIgeT0iMjUwIiBzdHlsZT0iZmlsbDojNTU1NTtmb250LXdlaWdodDpib2xkO2ZvbnQtc2l6ZTo1NnB4O2ZvbnQtZmFtaWx5OkFyaWFsLEhlbHZldGljYSxzYW5zLXNlcmlmO2RvbWluYW50LWJhc2VsaW5lOmNlbnRyYWwiPjkwMHg1MDA8L3RleHQ+PC9zdmc+">
+                                    <div class="carousel-caption">
+                                        <h3>Third slide label</h3>
+                                        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+                                    </div>
+                                </div>*@
+                        </div>
+                        <a class="left carousel-control" href="#carousel-example-captions" data-slide="prev">
+                            <span class="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-captions" data-slide="next">
+                            <span class="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="new-caption-area"></div>
+
+
+
+
+                @*//-----------------------------------------------------------------------------------*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                @*//-----------------------------------------------------------------------------------*@
+
+
+
+
+
+
+
+
+
+
+
+
+                @*@{ foreach (var item in Model)
+                        {
+
+                            <div class="col-sm-4" style="text-align:center">
+                                @{
+                                    if (item.kieufile == null)
+
+                                    {
+
+
+                                        <img src="~/uphinh/@item.tenhinhanh" style="width:190px" height="190">
+                                        <div style="text-align:center; color:#000000">@item.tenthongbao</div>
+                                    }
+                                }
+
+                            </div>
+
+                        }
+                    }*@
+
+           
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+
+
+    <script>
+       $('document').ready(function () {
+           /* $("#exampleModal").modal();*/
+           //closePdf();
+           $("#myModalhinh").show();
+           //location.reload(true);
+
+           //closeWin();
+           //alert("ad");
+       });
+
+
+
+        $('.close').click(function () {
+            $('.modal').hide();
+        });
+
+
+
+
+       function timedRefresh(timeoutPeriod) {
+           setTimeout(function () {
+               location.reload(true);
+           }, timeoutPeriod);
+        }
+
+
+
+       $("#abc1").off("click").on("click", function () {
+           //openPdf();
+           //closePdf();
+           //alert("asd");
+           closeMe();
+       });
+        //$("#off").off("click").on("click", function () {
+        //    //openPdf();
+        //    //closePdf();
+        //    //alert("asd");
+        //    //closeMe();
+        //    $("#myModalhinh").m
+
+        //});
+
+
+        $("#off").click(function () {
+            $("#myModalhinh").hide();
+        });
+
+       @*$("#abc").off("click").on("click", function () {
+           //alert("id");
+           //closeMe();
+           let id = $(this).data(@Model.id);
+
+
+           //alert("GỬI GÓP Ý THÀNH CÔNG - XIN CẢM ƠN")
+           if @ViewBag.err1=null && @ViewBag.err2= null{
+
+           }
+
+           location.reload();
+           /* alert("điền vào");*/
+           // $("#exampleModal1").modal();
+           //$("#tb1").load("/home/dslophoc");
+           //$("#tb").show();
+           /* $("#hh").load();*/
+
+           /* loadData1();*/
+       });*@
+       let id =@Model.
+
+       let id2 = $(this).data("okx");
+       var wnd = null;
+       function openPdf() {
+           wnd = window.open(id2, '_blank', 'fullscreen=yes'); return false;
+       }
+
+       function closePdf() {
+           wnd =window.close();
+           //if (wnd != null) {
+           //    window.close();
+           //}
+
+
+       }
+
+       function closeMe() {
+           //window.opener = self;
+           //window.close();
+
+           //var win = window.open("", "_self");
+           //win.close();
+           //document.getElementsByTagName('html')[0].remove();
+           //window.open('', '_self').close();
+
+           //window.open('', '_self', '');
+           //window.close();
+
+           let id1 = $(this).data("okx");
+
+           alert(id1);
+           //window.open('id1', '_parent', '');
+           //window.close();
+       }
+
+
+
+
+
+
+       function startTime() {
+           const today = new Date();
+           let h = today.getHours();
+           let m = today.getMinutes();
+           let s = today.getSeconds();
+           let n = today.getDate();
+           let t = today.getMonth()+1;
+           let thu = today.getDay();
+           let nam = today.getFullYear();
+           m = checkTime(m);
+           s = checkTime(s);
+           //let c = 0;
+
+           //let t1 = checkt(c);
+           //alert(t1);
+           //let z = today.getMonth();
+           //alert(z);
+           t = checkt(t);
+           t = checknt(t);
+           n = checknt(n);
+
+           //if (thu == 0) { thu = "cn" }
+           thu = checkthu(thu);
+           let hienthu;
+           //if (thu == "cn") { hienthu = " Chủ Nhật" } ;
+           document.getElementById("txt").textContent = "Thứ "+ thu + " ngày " + n + " Tháng " + t + " Năm " + nam + " - " + + h + ":" + m + ":" + s;
+           setTimeout(startTime, 1000);
+       }
+
+       function checkTime(i) {
+           if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+           return i;
+        }
+        function checknt(i) {
+
+            if (i < 10 ) { i = "0" + i };  // add zero in front of numbers < 10
+            return i;
+        }
+        function checkt(i) {
+            if (i == 0) {i= i+1 };  // add zero in front of numbers < 10
+
+            return i;
+
+        }
+        function checkthu(i) {
+            if (i == 0) { i = "cn" } ;  // add zero in front of numbers < 10
+            if (i !="cn") { i = i+1 };
+            return i;
+
+        }
+
+       var newWindow;
+       function openWindow() {
+           newWindow = window.open("", "myWindow", "width=200,height=100");
+           newWindow.document.write("<p>It is my 'newWindow'</p>");
+       }
+
+       function closeWindow() {
+           newWindow.close();
+       }
+
+
+
+
+
+       let myWindow;
+
+       function openWin() {
+           myWindow = window.open("https://www.w3schools.com", "_blank", "width=500, height=500");
+       }
+
+       function closeWin() {
+           myWindow.close();
+       }
+
+
+
+
+        function showDetails(animal) {
+        var animalType = animal.getAttribute("data-ok");
+
+        //let a = '<object src ="~/uphinh/'  + animalType+'"' + 'type= '+'" application/pdf"' + ' height='+'"445"' + ' width= '+' "290"' + ' data-toggle= "modal">';
+        //alert(a);
+
+            var b = '<embed src="' + '/uphinh/' + animalType +"#zoom=67%"  + '"' +' width= "850" height = "500" style = "bottom: 0px;CENTER: 0px;border: none;margin: 0;padding: 0;overflow: hidden;z-index: 3;height: 100%;" ></embed> '
+            //alert(b);
+            //var b = '<embed src="' + animalType + '"' + ' width= "850" height = "200" style = "bottom: 0px;CENTER: 0px;border: none;margin: 0;padding: 0;overflow: hidden;z-index: 3;height: 100%;" ></embed> '
+
+
+
+        //var b = '<embed src="' + animalType + '"' + ' width= "600" height = "645" style = "bottom: 0px;CENTER: 0px;width: 600;border: none;margin: 0;padding: 0;overflow: hidden;z-index: 3;height: 100%;" ></embed> '
+
+
+
+        //var b = '<embed src="' + animalType + '"' + ' width= "290" height = "445" style = "position: absolute;top: 66px;bottom: 0px;CENTER: 0px;width: 100%;border: none;margin: 0;padding: 0;overflow: hidden;z-index: 3;height: 100%;" ></embed> '
+
+
+        //var bb = '<object src ="~/uphinh/' + animalType + '"' + 'type= ' + '" application/pdf"' + ' height=' + '"445"' + ' width= ' + ' "290"' + ' data-toggle= "modal"></object>';
+        //alert(b);
+        document.getElementById('aabb').innerHTML = b;
+        document.getElementById('tieude').innerHTML = animal.getAttribute("data-ok1")
+
+        //$('#aabb').append(bb);
+    }
+
+
+
+
+        jQuery(function ($) {
+            $('.carousel').carousel();
+            var caption = $('div.item:nth-child(1) .carousel-caption');
+            $('.new-caption-area').html(caption.html());
+            caption.css('display', 'none');
+
+            $(".carousel").on('slide.bs.carousel', function (evt) {
+                var caption = $('div.item:nth-child(' + ($(evt.relatedTarget).index() + 1) + ') .carousel-caption');
+                $('.new-caption-area').html(caption.html());
+                caption.css('display', 'none');
+            });
+        });
+
+
+
+
+
+
+    </script>
+
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@*<html>
+    <head>
+        <meta name="viewport" content="width=device-width" />
+        <title>dsthongbao1</title>
+    </head>
+    <body>
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.tenthongbao)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.tenhinhanh)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.kieufile)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.trangthai)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.nguoidang)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ngaydang)
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tenthongbao)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tenhinhanh)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.kieufile)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.trangthai)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nguoidang)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ngaydang)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </body>
+    </html>*@
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>-->
+
+@*<script src="~/Scripts/jquery-3.4.1.min.js"></script>*@
+<!--<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>-->
+
+
