@@ -48,7 +48,19 @@
 
     body .modal-xl  {
         width: 1000px;
-       
+    }
+    .carousel-media-frame {
+        width: 100%;
+        height: 520px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+    }
+    .carousel-media-img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
     }
     /*.modal-content{
         display: inline;
@@ -247,7 +259,9 @@
 
                         <div class="carousel-inner" style="width:90%; height:90%">
                             <div class="item active">
-                                <img data-src="holder.js/900x500/auto/#777:#777" alt="900x500" src="~/uphinh/slideshow-1.jpg">
+                                <div class="carousel-media-frame">
+                                    <img data-src="holder.js/900x500/auto/#777:#777" alt="900x500" src="~/uphinh/slideshow-1.jpg" class="carousel-media-img" decoding="async">
+                                </div>
                                 <div class="carousel-caption">
                                     @*<h3>First slide label</h3>
                                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
@@ -262,8 +276,9 @@
                                     {
                                         <div class="item">
                                             @*<img src="~/uphinh/@item.tenhinhanh" alt="New York" width="1200" height="700" style="padding-left:122px; padding-right:122px;  ">*@
-
-                                            <img src="~/uphinh/@item.tenhinhanh" alt="900x500" @*width="1200" height="700"*@ style="padding-left:122px; padding-right:122px;  ">
+                                            <div class="carousel-media-frame">
+                                                <img src="~/uphinh/@item.tenhinhanh" alt="900x500" class="carousel-media-img" decoding="async" @*width="1200" height="700"*@>
+                                            </div>
 
 
                                             <div class="carousel-caption">
@@ -605,6 +620,10 @@
 
         jQuery(function ($) {
             $('.carousel').carousel();
+            $('.carousel .carousel-media-img').each(function () {
+                var preloadImage = new Image();
+                preloadImage.src = this.src;
+            });
             var caption = $('div.item:nth-child(1) .carousel-caption');
             $('.new-caption-area').html(caption.html());
             caption.css('display', 'none');
