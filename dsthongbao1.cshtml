@@ -48,7 +48,67 @@
 
     body .modal-xl  {
         width: 1000px;
-       
+    }
+    .carousel-media-frame {
+        width: 100%;
+        max-width: 100%;
+        aspect-ratio: 5472 / 3648;
+        min-height: 420px;
+        max-height: 620px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        overflow: hidden;
+    }
+    .carousel-media-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .dashboard-row {
+        width: 100%;
+        margin: 0;
+        display: flex;
+        align-items: stretch;
+    }
+    .dashboard-panel {
+        text-align: center;
+        border-style: solid;
+        border-color: red green rgb(140,51,79) #FFA500;
+        padding: 12px 16px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+    }
+    .panel-title {
+        margin: 6px 0 18px;
+    }
+    .left-scroll {
+        width: 100%;
+        height: 320px;
+    }
+    .bs-example {
+        width: 100%;
+        max-width: 900px;
+    }
+    .carousel-inner {
+        width: 100% !important;
+        margin: 0 auto;
+    }
+    .new-caption-area {
+        width: 100%;
+        max-width: 900px;
+        margin: 12px auto 0;
+        min-height: 72px;
+    }
+    @media (max-width: 991px) {
+        .dashboard-row {
+            display: block;
+        }
+        .dashboard-panel {
+            width: 100%;
+        }
     }
     /*.modal-content{
         display: inline;
@@ -147,12 +207,12 @@
     @*<meta http-equiv="refresh" content="10"; url = '<%= Url.Action("home", "dsthongbao1") %>'>*@
     @*<meta http-equiv="refresh" content="10">*@
 
-    <div class="row" style="width:inherit ;margin-left:0px;margin-right:0px;">
-        <div class="column col-4" style="text-align: center; border-style:solid; border-color: red green rgb(140,51,79) #FFA500;  height:471px">
-            <h2>@Html.ActionLink("THÔNG TIN NỘi BỘ", "dsthongbaonoibo")</h2>
+    <div class="row dashboard-row">
+        <div class="column col-sm-4 dashboard-panel">
+            <h2 class="panel-title">@Html.ActionLink("THÔNG TIN NỘi BỘ", "dsthongbaonoibo")</h2>
 
             @*<h1><a href="/Home/dsthongbao3.cshtml">THÔNG TIN NỘi BỘ</a></h1>*@
-            <marquee direction="up" height="320px" scrrollamount="-10" onMouseOver="this.stop()" onMouseOut="this.start()" class="col-12">
+            <marquee direction="up" scrrollamount="-10" onMouseOver="this.stop()" onMouseOut="this.start()" class="left-scroll">
 
                 @{ foreach (var item in Model.Where(x => x.kieufile != null).ToList())
                     {
@@ -229,8 +289,8 @@
 
         </div>
 
-        <div class="column col-8" style="text-align: center; border-style: solid; border-color: red green rgb(140,51,79) #FFA500;">
-            <h1>@Html.ActionLink("HÌNH ẢNH HOẠT ĐỘNG CÔNG TY", "dshinhanhhoatdong")</h1>
+        <div class="column col-sm-8 dashboard-panel">
+            <h1 class="panel-title">@Html.ActionLink("HÌNH ẢNH HOẠT ĐỘNG CÔNG TY", "dshinhanhhoatdong")</h1>
 
 
 
@@ -242,12 +302,14 @@
 
 
 
-                <div class="bs-example" style="width:730px">
+                <div class="bs-example">
                     <div id="carousel-example-captions" class="carousel slide" data-ride="carousel">
 
-                        <div class="carousel-inner" style="width:90%; height:90%">
+                        <div class="carousel-inner" style="height:90%">
                             <div class="item active">
-                                <img data-src="holder.js/900x500/auto/#777:#777" alt="900x500" src="~/uphinh/slideshow-1.jpg">
+                                <div class="carousel-media-frame">
+                                    <img data-src="holder.js/900x500/auto/#777:#777" alt="900x500" src="~/uphinh/slideshow-1.jpg" class="carousel-media-img" decoding="async" width="5472" height="3648">
+                                </div>
                                 <div class="carousel-caption">
                                     @*<h3>First slide label</h3>
                                     <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>*@
@@ -262,8 +324,9 @@
                                     {
                                         <div class="item">
                                             @*<img src="~/uphinh/@item.tenhinhanh" alt="New York" width="1200" height="700" style="padding-left:122px; padding-right:122px;  ">*@
-
-                                            <img src="~/uphinh/@item.tenhinhanh" alt="900x500" @*width="1200" height="700"*@ style="padding-left:122px; padding-right:122px;  ">
+                                            <div class="carousel-media-frame">
+                                                <img src="~/uphinh/@item.tenhinhanh" alt="900x500" class="carousel-media-img" decoding="async" width="5472" height="3648" @*width="1200" height="700"*@>
+                                            </div>
 
 
                                             <div class="carousel-caption">
@@ -605,6 +668,10 @@
 
         jQuery(function ($) {
             $('.carousel').carousel();
+            $('.carousel .carousel-media-img').each(function () {
+                var preloadImage = new Image();
+                preloadImage.src = this.src;
+            });
             var caption = $('div.item:nth-child(1) .carousel-caption');
             $('.new-caption-area').html(caption.html());
             caption.css('display', 'none');
