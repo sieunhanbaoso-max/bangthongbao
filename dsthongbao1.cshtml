@@ -51,16 +51,20 @@
     }
     .carousel-media-frame {
         width: 100%;
-        height: 520px;
+        max-width: 100%;
+        aspect-ratio: 5472 / 3648;
+        min-height: 420px;
+        max-height: 620px;
         display: flex;
         align-items: center;
         justify-content: center;
         background: #ffffff;
+        overflow: hidden;
     }
     .carousel-media-img {
         width: 100%;
         height: 100%;
-        object-fit: contain;
+        object-fit: cover;
     }
     /*.modal-content{
         display: inline;
@@ -260,7 +264,7 @@
                         <div class="carousel-inner" style="width:90%; height:90%">
                             <div class="item active">
                                 <div class="carousel-media-frame">
-                                    <img data-src="holder.js/900x500/auto/#777:#777" alt="900x500" src="~/uphinh/slideshow-1.jpg" class="carousel-media-img" decoding="async">
+                                    <img data-src="holder.js/900x500/auto/#777:#777" alt="900x500" src="~/uphinh/slideshow-1.jpg" class="carousel-media-img" decoding="async" width="5472" height="3648">
                                 </div>
                                 <div class="carousel-caption">
                                     @*<h3>First slide label</h3>
@@ -277,7 +281,7 @@
                                         <div class="item">
                                             @*<img src="~/uphinh/@item.tenhinhanh" alt="New York" width="1200" height="700" style="padding-left:122px; padding-right:122px;  ">*@
                                             <div class="carousel-media-frame">
-                                                <img src="~/uphinh/@item.tenhinhanh" alt="900x500" class="carousel-media-img" decoding="async" @*width="1200" height="700"*@>
+                                                <img src="~/uphinh/@item.tenhinhanh" alt="900x500" class="carousel-media-img" decoding="async" width="5472" height="3648" @*width="1200" height="700"*@>
                                             </div>
 
 
